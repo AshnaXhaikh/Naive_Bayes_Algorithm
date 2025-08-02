@@ -1,0 +1,99 @@
+---
+
+# 📘 Naive Bayes & Bayes’ Theorem — Summary Notes
+
+---
+
+## ✅ 1. **Bayes’ Theorem:**
+
+Bayes’ Theorem gives a way to **reverse conditional probability**:
+
+$$
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
+$$
+
+Where:
+
+* $P(A|B)$ → Probability of A given B (Posterior)
+* $P(B|A)$ → Probability of B given A (Likelihood)
+* $P(A)$ → Probability of A (Prior)
+* $P(B)$ → Total probability of B (Evidence)
+
+### ✨ Intuition:
+
+Bayes’ theorem updates our belief about an event **after getting new evidence**.
+
+---
+
+## ✅ 2. **Bayes’ Theorem – Example (Medical Test)**
+
+* 1% of people have a rare disease.
+* Test is 99% accurate (true positive rate).
+* 5% false positive rate for healthy people.
+
+If a person tests positive:
+
+$$
+P(\text{Disease} | \text{Positive}) = \frac{0.99 \cdot 0.01}{(0.99 \cdot 0.01 + 0.05 \cdot 0.99)} \approx 16.67\%
+$$
+
+**Conclusion:** Even with a positive result, the person only has a **\~17% chance** of being sick — because the disease is rare, and false positives matter a lot.
+
+---
+
+## ✅ 3. **Naive Bayes Algorithm**
+
+Naive Bayes is a classification algorithm based on Bayes’ Theorem with a **naive assumption**:
+
+* All features are **independent** given the class.
+
+$$
+P(C|X) \propto P(X|C) \cdot P(C)
+$$
+
+Where:
+
+* $C$: Class label (target)
+* $X$: Feature vector (input)
+* $P(C)$: Prior probability of class
+* $P(X|C)$: Likelihood of features given the class
+
+---
+
+## ✅ 4. **Important Point:**
+
+> The choice of Naive Bayes variant (Gaussian, Bernoulli, etc.) depends on the **nature of the features (independent variables)** — **not the target**.
+
+---
+
+## ✅ 5. **Variants of Naive Bayes**
+
+| Variant           | For Feature Type          | Description / Example                                |
+| ----------------- | ------------------------- | ---------------------------------------------------- |
+| **GaussianNB**    | Continuous (real numbers) | Use when features are continuous (e.g., age, income) |
+| **MultinomialNB** | Discrete counts           | Use when features are word counts or frequencies     |
+| **BernoulliNB**   | Binary (0 or 1)           | Use when features are yes/no or word present/absent  |
+| **ComplementNB**  | Text + class imbalance    | Better for imbalanced text data                      |
+| **CategoricalNB** | Categorical labels        | Use when features are non-numeric categories         |
+
+---
+
+## ✅ 6. **Examples of Feature Types**
+
+| Use Case                                      | Example Features              | Recommended NB Variant |
+| --------------------------------------------- | ----------------------------- | ---------------------- |
+| Spam detection (word count)                   | how many times “free” appears | MultinomialNB          |
+| Spam detection (presence only)                | whether “free” is present     | BernoulliNB            |
+| Predict disease based on health metrics       | glucose level, blood pressure | GaussianNB             |
+| Sentiment analysis with rare negative samples | imbalanced text labels        | ComplementNB           |
+| Predict based on color, size, etc.            | Red, Blue, S, M, L (labels)   | CategoricalNB          |
+
+---
+
+## ✅ 7. **Naive Bayes is Good Because:**
+
+* It’s simple, fast, and works well with text and high-dimensional data.
+* It works well even with small datasets.
+* But it assumes features are **independent**, which may not always be true.
+
+---
